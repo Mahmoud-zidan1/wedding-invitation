@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>دعوة زفاف محمد & رحمة</title>
+<meta name="theme-color" content="#0b0a08">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cinzel:wght@500;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0a08;--g1:#d8b46a;--g2:#f3dfa8;--g3:#a07a35;--txt:#efe3c6;
+--gold:linear-gradient(135deg,#a07a35,#f3dfa8 45%,#d8b46a 70%,#a07a35)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--txt);font-family:'Amiri',serif;overflow:hidden}
+#sparkles{position:fixed;inset:0;z-index:0;pointer-events:none}
+main{position:relative;z-index:1;height:100dvh;overflow-y:auto;scroll-snap-type:y mandatory;scrollbar-width:none}
+main::-webkit-scrollbar{display:none}
+section{height:100dvh;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px 28px;gap:16px;position:relative}
+.gold{background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+.names{font-family:'Aref Ruqaa',serif;font-size:clamp(46px,13vw,76px);line-height:1.3}
+.amp{font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--g1)}
+.en{font-family:'Cinzel','Cormorant Garamond',serif;letter-spacing:.18em;color:var(--g1);font-size:13px}
+.big{font-size:clamp(20px,5.6vw,28px);line-height:2}
+.small{font-size:17px;opacity:.85;line-height:1.9}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s,transform .9s}
+section.on .reveal{opacity:1;transform:none}
+section.on .reveal:nth-child(2){transition-delay:.15s}section.on .reveal:nth-child(3){transition-delay:.3s}
+section.on .reveal:nth-child(4){transition-delay:.45s}section.on .reveal:nth-child(5){transition-delay:.6s}
+/* seal */
+#seal{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity 1s,visibility 1s;cursor:pointer}
+#seal.open{opacity:0;visibility:hidden}
+.stamp{width:170px;height:170px;border-radius:50%;background:var(--gold);display:grid;place-items:center;box-shadow:0 0 50px rgba(216,180,106,.45),inset 0 0 0 8px rgba(0,0,0,.18);animation:pulse 2.4s ease-in-out infinite}
+.stamp span{font-family:'Aref Ruqaa',serif;font-size:60px;color:#2a1f0a;direction:rtl}
+@keyframes pulse{50%{transform:scale(1.06);box-shadow:0 0 80px rgba(243,223,168,.6),inset 0 0 0 8px rgba(0,0,0,.18)}}
+/* frame */
+.frame{position:relative;padding:34px 30px;width:min(92%,420px);border:1px solid rgba(216,180,106,.45)}
+.frame i{position:absolute;width:26px;height:26px;border:2px solid var(--g1)}
+.frame i:nth-child(1){top:-6px;right:-6px;border-left:0;border-bottom:0}
+.frame i:nth-child(2){top:-6px;left:-6px;border-right:0;border-bottom:0}
+.frame i:nth-child(3){bottom:-6px;right:-6px;border-left:0;border-top:0}
+.frame i:nth-child(4){bottom:-6px;left:-6px;border-right:0;border-top:0}
+.ayah{font-size:clamp(22px,6.2vw,30px);line-height:2.2}
+.ref{font-size:15px;color:var(--g1)}
+.line{width:90px;height:1px;background:var(--gold)}
+/* countdown */
+.cd{display:flex;gap:10px;direction:rtl}
+.cd div{width:72px;padding:14px 0;border:1px solid rgba(216,180,106,.5);border-radius:12px;background:rgba(216,180,106,.06)}
+.cd b{display:block;font-size:30px;font-weight:700;color:var(--g2);font-variant-numeric:tabular-nums}
+.cd span{font-size:14px;opacity:.8}
+/* buttons */
+.btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.btn{font-family:'Amiri',serif;font-size:18px;font-weight:700;padding:12px 26px;border-radius:999px;border:0;background:var(--gold);color:#2a1f0a;text-decoration:none;cursor:pointer}
+.btn.ghost{background:none;border:1px solid var(--g1);color:var(--g2)}
+form{display:flex;flex-direction:column;gap:12px;width:min(100%,380px)}
+input,textarea{font-family:'Amiri',serif;font-size:18px;padding:12px 14px;border-radius:10px;border:1px solid rgba(216,180,106,.5);background:rgba(255,255,255,.05);color:var(--txt);direction:rtl;width:100%}
+textarea{min-height:110px;resize:none}
+input:focus,textarea:focus{outline:2px solid var(--g1)}
+#msg{color:var(--g2);min-height:24px}
+/* dots */
+#dots{position:fixed;left:12px;top:50%;transform:translateY(-50%);z-index:20;display:flex;flex-direction:column;gap:12px}
+#dots button{width:9px;height:9px;border-radius:50%;border:1px solid var(--g1);background:none;padding:0;cursor:pointer;transition:.3s}
+#dots button.on{background:var(--g1);transform:scale(1.35)}
+@media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;transform:none}.stamp{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="sparkles"></canvas>
+
+<div id="seal" role="button" tabindex="0" aria-label="افتح الدعوة">
+  <div class="stamp"><span>م &amp; ر</span></div>
+  <div class="en">TAP TO OPEN</div>
+  <div class="small gold">اضغط على الختم لفتح الدعوة</div>
+</div>
+
+<nav id="dots" aria-label="التنقل"></nav>
+
+<main id="main">
+  <section id="s1">
+    <div class="reveal big gold" style="font-size:30px">بسم الله الرحمن الرحيم</div>
+    <div class="reveal small">بكل الحب نتشرف بدعوتكم لحضور حفل زفاف</div>
+    <div class="reveal frame"><i></i><i></i><i></i><i></i>
+      <div class="names gold" id="gName"></div>
+      <div class="amp">&amp;</div>
+      <div class="names gold" id="bName"></div>
+    </div>
+    <div class="reveal en" id="dateEn"></div>
+    <div class="reveal big gold" id="dateAr"></div>
+  </section>
+
+  <section id="s2">
+    <div class="reveal ayah gold">﴿وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً﴾</div>
+    <div class="reveal ref">سورة الروم — الآية ٢١</div>
+    <div class="reveal line"></div>
+    <div class="reveal big" id="inviteText"></div>
+  </section>
+
+  <section id="s3">
+    <div class="reveal big gold">باقي على الفرحة</div>
+    <div class="reveal cd" id="cd">
+      <div><b id="cdD">٠</b><span>يوم</span></div>
+      <div><b id="cdH">٠</b><span>ساعة</span></div>
+      <div><b id="cdM">٠</b><span>دقيقة</span></div>
+      <div><b id="cdS">٠</b><span>ثانية</span></div>
+    </div>
+    <div class="reveal small" id="cdNote"></div>
+  </section>
+
+  <section id="s4">
+    <div class="reveal en">WHEN &amp; WHERE</div>
+    <div class="reveal big gold" id="whenAr"></div>
+    <div class="reveal big" id="venue"></div>
+    <div class="reveal btns">
+      <a class="btn" id="mapBtn" target="_blank" rel="noopener">افتح الخريطة</a>
+      <a class="btn ghost" id="calBtn" target="_blank" rel="noopener">أضف للتقويم</a>
+    </div>
+  </section>
+
+  <section id="s5">
+    <div class="reveal big gold">سجّل تهنئتك</div>
+    <form class="reveal" id="wishForm">
+      <input name="name" placeholder="الاسم" required maxlength="60">
+      <textarea name="message" placeholder="رسالتك للعروسين" required maxlength="400"></textarea>
+      <button class="btn" type="submit">إرسال التهنئة</button>
+      <div id="msg" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <section id="s6">
+    <div class="reveal big gold" style="font-size:30px">بانتظاركم لتكتمل فرحتنا</div>
+    <div class="reveal names gold" id="endNames"></div>
+    <div class="reveal line"></div>
+    <div class="reveal big">بارك الله لهما وبارك عليهما وجمع بينهما في خير</div>
+  </section>
+</main>
+
+<script>
+const CONFIG = {
+  groomAr: "محمد", brideAr: "رحمة",
+  groomEn: "Mohamed", brideEn: "Rahma",
+  start: "2026-11-13T20:00:00+02:00",   // الجمعة 8 مساءً بتوقيت القاهرة
+  durationHours: 4,
+  venueAr: "قاعة الفورسيزون — طلخا، الدقهلية",
+  venueQuery: "قاعة الفورسيزون طلخا الدقهلية مصر",
+  mapsUrl: "",          // لو عندك لينك دقيق من Google Maps حطه هنا
+  scriptUrl: "",        // رابط Google Apps Script (فاضي = قسم التهاني يتخفي)
+  musicUrl: "",         // لينك مزيكا mp3 (اختياري)
+  inviteText: "يسعدنا ويشرفنا حضوركم ومشاركتنا أجمل لحظات العمر، ودعواتكم لنا بالتوفيق والسعادة."
+};
+
+const $ = id => document.getElementById(id);
+const ar = n => String(n).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+const start = new Date(CONFIG.start), end = new Date(+start + CONFIG.durationHours * 36e5);
+const tz = { timeZone: "Africa/Cairo" };
+
+// النصوص
+$("gName").textContent = CONFIG.groomAr;
+$("bName").textContent = CONFIG.brideAr;
+$("endNames").textContent = CONFIG.groomAr + " & " + CONFIG.brideAr;
+$("inviteText").textContent = CONFIG.inviteText;
+$("venue").textContent = CONFIG.venueAr;
+$("dateEn").textContent = start.toLocaleDateString("en-GB", { ...tz, day: "numeric", month: "long", year: "numeric" }).toUpperCase();
+const dayAr = start.toLocaleDateString("ar-EG", { ...tz, weekday: "long" });
+const dateAr = start.toLocaleDateString("ar-EG", { ...tz, day: "numeric", month: "long", year: "numeric" });
+const timeAr = start.toLocaleTimeString("ar-EG", { ...tz, hour: "numeric", minute: "2-digit", hour12: true });
+$("dateAr").textContent = dayAr + " " + dateAr;
+$("whenAr").textContent = dayAr + " " + dateAr + " — " + timeAr;
+$("cdNote").textContent = "الحفل من " + timeAr + " لمدة " + ar(CONFIG.durationHours) + " ساعات";
+
+// الخريطة والتقويم
+$("mapBtn").href = CONFIG.mapsUrl || "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(CONFIG.venueQuery);
+const fmt = d => d.toISOString().replace(/[-:]|\.\d{3}/g, "");
+$("calBtn").href = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+  "&text=" + encodeURIComponent("حفل زفاف " + CONFIG.groomAr + " & " + CONFIG.brideAr) +
+  "&dates=" + fmt(start) + "/" + fmt(end) +
+  "&details=" + encodeURIComponent(CONFIG.inviteText) +
+  "&location=" + encodeURIComponent(CONFIG.venueAr);
+
+// العد التنازلي
+function tick() {
+  let s = Math.max(0, Math.floor((start - Date.now()) / 1000));
+  const d = Math.floor(s / 86400); s %= 86400;
+  const h = Math.floor(s / 3600); s %= 3600;
+  $("cdD").textContent = ar(d); $("cdH").textContent = ar(h);
+  $("cdM").textContent = ar(Math.floor(s / 60)); $("cdS").textContent = ar(s % 60);
+}
+tick(); setInterval(tick, 1000);
+
+// الفورم (اختياري)
+if (!CONFIG.scriptUrl) { $("s5").remove(); }
+else {
+  $("wishForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    const f = e.target, btn = f.querySelector("button");
+    btn.disabled = true; $("msg").textContent = "جاري الإرسال…";
+    try {
+      await fetch(CONFIG.scriptUrl, { method: "POST", mode: "no-cors", body: new URLSearchParams(new FormData(f)) });
+      $("msg").textContent = "وصلتنا تهنئتك، شكرًا لك 🤍"; f.reset();
+    } catch (_) { $("msg").textContent = "حصلت مشكلة، حاول مرة تانية."; }
+    btn.disabled = false;
+  });
+}
+
+// الختم والمزيكا
+let audio = null;
+if (CONFIG.musicUrl) { audio = new Audio(CONFIG.musicUrl); audio.loop = true; }
+function openSeal() { $("seal").classList.add("open"); if (audio) audio.play().catch(() => {}); document.querySelector("section").classList.add("on"); }
+$("seal").addEventListener("click", openSeal);
+$("seal").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") openSeal(); });
+
+// نقاط التنقل + ظهور الأقسام
+const secs = [...document.querySelectorAll("main section")], dots = $("dots");
+secs.forEach((s, i) => {
+  const b = document.createElement("button"); b.setAttribute("aria-label", "القسم " + (i + 1));
+  b.onclick = () => s.scrollIntoView({ behavior: "smooth" }); dots.appendChild(b);
+});
+const io = new IntersectionObserver(es => es.forEach(en => {
+  if (en.isIntersecting) {
+    en.target.classList.add("on");
+    [...dots.children].forEach((b, i) => b.classList.toggle("on", secs[i] === en.target));
+  }
+}), { root: $("main"), threshold: .6 });
+secs.forEach(s => io.observe(s));
+
+// بريق ذهبي
+const cv = $("sparkles"), cx = cv.getContext("2d"); let W, H, P = [];
+function size() { W = cv.width = innerWidth; H = cv.height = innerHeight; }
+addEventListener("resize", size); size();
+const mk = () => ({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.8 + .4, v: Math.random() * .35 + .1, a: Math.random(), da: (Math.random() * .02 + .005) });
+P = Array.from({ length: 70 }, mk);
+(function loop() {
+  cx.clearRect(0, 0, W, H);
+  for (const p of P) {
+    p.y -= p.v; p.a += p.da; if (p.a > 1 || p.a < 0) p.da *= -1; if (p.y < -5) { p.y = H + 5; p.x = Math.random() * W; }
+    cx.globalAlpha = Math.abs(p.a) * .8; cx.fillStyle = "#f3dfa8";
+    cx.beginPath(); cx.arc(p.x, p.y, p.r, 0, 6.283); cx.fill();
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
