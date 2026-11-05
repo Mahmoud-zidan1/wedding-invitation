@@ -46,7 +46,7 @@ section.on .card{opacity:1;transform:none}
 .gold{background:var(--gg);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
 .rosy{background:var(--rg);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s linear infinite}
 @keyframes shine{to{background-position:-200% 0}}
-.mono{font-family:'Aref Ruqaa',serif;font-size:54px;line-height:1.2}
+.mono{font-family:'Cinzel',serif;font-size:54px;line-height:1.2}
 .names{font-family:'Aref Ruqaa',serif;font-size:clamp(40px,11.5vw,56px);line-height:1.4}
 .en{font-family:'Cinzel',serif;letter-spacing:.18em;color:var(--gold);font-size:13px}
 .big{font-size:clamp(19px,5.2vw,26px);line-height:1.9}
@@ -85,7 +85,7 @@ input:focus,textarea:focus{outline:2px solid var(--rose)}
 border-radius:47% 53% 51% 49%/50% 46% 54% 50%;background:radial-gradient(circle at 35% 30%,#f5dc9a,#cfa850 55%,#9c7a32);
 box-shadow:0 10px 26px rgba(90,60,20,.45),inset 0 0 0 3px rgba(255,240,190,.4);animation:pulse 2.6s ease-in-out infinite;transition:opacity .6s,transform .9s}
 .wax::before{content:"";position:absolute;inset:14px;border-radius:50%;border:2px dotted rgba(120,88,30,.6)}
-.wax span{font-family:'Aref Ruqaa',serif;font-size:44px;color:#8a6a2c;text-shadow:0 1px 0 #f8e6ae}
+.wax span{font-family:'Cinzel',serif;font-size:44px;color:#8a6a2c;text-shadow:0 1px 0 #f8e6ae}
 @keyframes pulse{50%{transform:scale(1.06)}}
 #seal.open .wax{opacity:0;transform:scale(1.5)}
 .hint{position:absolute;bottom:9%;width:100%;text-align:center;font-size:19px;color:#a08560;transition:opacity .4s}
@@ -151,7 +151,7 @@ box-shadow:0 10px 26px rgba(90,60,20,.45),inset 0 0 0 3px rgba(255,240,190,.4);a
 
 <div id="seal" role="button" tabindex="0" aria-label="افتح الدعوة">
   <i class="fl t"></i><i class="fl b"></i><i class="fl l"></i><i class="fl r"></i>
-  <div class="wax"><span>م &amp; ر</span></div>
+  <div class="wax"><span>M&amp;R</span></div>
   <div class="hint">اضغط على الختم لفتح الدعوة</div>
 </div>
 
@@ -169,7 +169,7 @@ box-shadow:0 10px 26px rgba(90,60,20,.45),inset 0 0 0 3px rgba(255,240,190,.4);a
   </div></section>
 
   <section id="s1"><div class="card">
-    <div class="reveal mono rosy">م &amp; ر</div>
+    <div class="reveal mono rosy">M&amp;R</div>
     <div class="reveal big gold">بسم الله الرحمن الرحيم</div>
     <div class="reveal small">بكل الحب نتشرف بدعوتكم لحضور</div>
     <div class="reveal big rosy" style="font-size:30px">حفل زفاف</div>
@@ -230,8 +230,8 @@ const CONFIG = {
   groomEn: "Mohamed", brideEn: "Rahma",
   start: "2026-11-13T19:00:00+02:00",   // الجمعة 7 مساءً بتوقيت القاهرة
   durationHours: 4,
-  venueAr: "قاعة الفورسيزون — طلخا، الدقهلية",
-  venueQuery: "قاعة الفورسيزون طلخا الدقهلية مصر",
+  venueAr: "قاعة الفورسيزون — طلخا، المنصورة",
+  venueQuery: "قاعة الفورسيزون طلخا المنصورة مصر",
   mapsUrl: "",          // لينك دقيق من Google Maps (اختياري)
   scriptUrl: "",        // رابط Google Apps Script (فاضي = قسم التهاني يتخفي)
   musicUrl: "",         // لينك mp3 (اختياري) مثال: "song.mp3"
