@@ -91,6 +91,17 @@ box-shadow:0 10px 26px rgba(90,60,20,.45),inset 0 0 0 3px rgba(255,240,190,.4);a
 .hint{position:absolute;bottom:9%;width:100%;text-align:center;font-size:19px;color:#a08560;transition:opacity .4s}
 #seal.open .hint{opacity:0}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}.reveal,.card{transition:none;opacity:1;transform:none;filter:none}}
+
+/* إشارة تنقل هادئة تتماشى مع طابع الدعوة */
+#nextPage{position:fixed;z-index:24;bottom:max(11px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;width:120px;min-height:44px;padding:3px 8px;border:0;background:transparent;box-shadow:none;color:white;font:400 13px 'Amiri',serif;line-height:1.2;cursor:pointer;opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s;text-shadow:0 1px 5px rgba(255,250,244,.9)}
+#nextPage.visible{opacity:.85;visibility:visible}
+#nextPage.visible:hover,#nextPage.visible:focus-visible{opacity:1}
+#nextPage:focus-visible{outline:1px solid var(--gold);outline-offset:2px;border-radius:8px}
+#nextPage .arrow{width:17px;height:17px;color:white;animation:nextBounce 2s ease-in-out infinite}
+#nextPage .arrow svg{display:block;width:100%;height:100%;stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+@keyframes nextBounce{50%{transform:translateY(3px)}}
+#nextPage.last .arrow{transform:rotate(180deg);animation:none}
+@media(prefers-reduced-motion:reduce){#nextPage .arrow{animation:none}}
 </style>
 </head>
 <body>
@@ -145,6 +156,10 @@ box-shadow:0 10px 26px rgba(90,60,20,.45),inset 0 0 0 3px rgba(255,240,190,.4);a
 </div>
 
 <nav id="dots" aria-label="التنقل"></nav>
+<button id="nextPage" type="button" aria-label="الانتقال للصفحة التالية">
+  <span id="nextLabel">اسحب للأعلى</span>
+  <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+</button>
 
 <main id="main">
   <section id="sp"><div class="card ph">
@@ -279,6 +294,7 @@ let audio = null;
 if (CONFIG.musicUrl) { audio = new Audio(CONFIG.musicUrl); audio.loop = true; }
 function openSeal() {
   $("seal").classList.add("open");
+  $("nextPage").classList.add("visible");
   if (audio) audio.play().catch(() => {});
   for (let i = 0; i < 70; i++) P.push(petal(true));
   setTimeout(() => document.querySelector("section").classList.add("on"), 900);
@@ -287,6 +303,18 @@ $("seal").addEventListener("click", openSeal);
 $("seal").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") openSeal(); });
 
 const secs = [...document.querySelectorAll("main section")], dots = $("dots");
+let currentPage = 0;
+function updateNextPage(index) {
+  currentPage = index;
+  const last = index === secs.length - 1;
+  $("nextLabel").textContent = last ? "العودة لبداية الدعوة" : "اسحب للأعلى";
+  $("nextPage").classList.toggle("last", last);
+  $("nextPage").setAttribute("aria-label", last ? "العودة لأول صفحة" : "الانتقال للصفحة التالية");
+}
+$("nextPage").addEventListener("click", () => {
+  secs[(currentPage + 1) % secs.length].scrollIntoView({ behavior: "smooth" });
+});
+updateNextPage(0);
 secs.forEach((s, i) => {
   const b = document.createElement("button"); b.setAttribute("aria-label", "القسم " + (i + 1));
   b.onclick = () => s.scrollIntoView({ behavior: "smooth" }); dots.appendChild(b);
@@ -295,6 +323,7 @@ const io = new IntersectionObserver(es => es.forEach(en => {
   if (en.isIntersecting) {
     if (en.target !== secs[0] || $("seal").classList.contains("open")) en.target.classList.add("on");
     [...dots.children].forEach((b, i) => b.classList.toggle("on", secs[i] === en.target));
+    updateNextPage(secs.indexOf(en.target));
   }
 }), { root: $("main"), threshold: .6 });
 secs.forEach(s => io.observe(s));
